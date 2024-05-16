@@ -1,9 +1,15 @@
 import React from "react";
+import Nav from "./nav";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {
-  return <>{children}</>;
+  return (
+    <>
+      <Nav />
+      <div className="flex-col flex">{children}</div>
+    </>
+  );
 }
