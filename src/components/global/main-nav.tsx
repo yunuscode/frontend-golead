@@ -36,8 +36,9 @@ export default function MainNav({
       className={cn("flex items-center space-x-4 lg:space-x-6", className)}
       {...props}
     >
-      {navList.map((item: NavItem) => (
+      {navList.map((item: NavItem, index: number) => (
         <a
+          key={index}
           href={item.link}
           className={
             location.pathname.startsWith(item.link)

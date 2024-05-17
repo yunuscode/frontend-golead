@@ -8,6 +8,14 @@
     </head>
     <body>
         <div id="root"></div>
+        <script>
+            const error = console.error;
+
+            console.error = (...args) => {
+                if (/defaultProps/.test(args[0])) return;
+                error(...args);
+            };
+        </script>
         <script type="module" src="/src/main.tsx"></script>
     </body>
 </html>

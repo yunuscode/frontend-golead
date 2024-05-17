@@ -1,6 +1,25 @@
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { LoadingSpinner } from "../global/spinner";
 
 export default function LoginComponent() {
+  const [isRedirecting, setIsRedirecting] = useState(false);
+
+  useEffect(() => {
+    if (window.location.search.includes("token")) {
+      const token = window.location.search.replace("?token=", "");
+      if (token) {
+        localStorage.setItem("token", token);
+        window.location.href = "/";
+      }
+    }
+  }, []);
+
+  const login = () => {
+    setIsRedirecting(true);
+    window.location.href = "http://localhost:5678/api/auth/twitter";
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 px-4 py-12 dark:bg-gray-900">
       <div className="mx-auto max-w-md space-y-8 rounded-lg bg-white p-10 shadow-lg dark:bg-gray-800 md:px-12">
@@ -11,9 +30,18 @@ export default function LoginComponent() {
           </p>
         </div>
         <div className="space-y-4">
-          <Button className="w-full" variant="outline">
-            <TwitterIcon className="mr-2 h-4 w-4" />
-            Login with Twitter
+          <Button
+            disabled={isRedirecting}
+            onClick={login}
+            className="w-full"
+            variant="outline"
+          >
+            {isRedirecting ? (
+              <LoadingSpinner className="mr-2 h-4 w-4" />
+            ) : (
+              <TwitterIcon className="mr-2 h-4 w-4" />
+            )}
+            {isRedirecting ? "Redirecting..." : "Login with Twitter"}
           </Button>
         </div>
       </div>
