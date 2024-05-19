@@ -1,6 +1,7 @@
 import { Step, Stepper, type StepItem } from "@/components/stepper";
 import NoAccount from "../onboarding/no-account";
 import Pricing from "../onboarding/pricing";
+import GetStarted from "../onboarding/get-started";
 
 const steps = [
   {
@@ -16,7 +17,7 @@ const steps = [
   {
     description: "Get started",
     label: "Get started",
-    id: "goals",
+    id: "start",
   },
 ] satisfies StepItem[];
 
@@ -30,6 +31,7 @@ export default function Onboarding() {
               <Step key={label} label={label}>
                 {id == "plan" && <Pricing />}
                 {id == "account" && <NoAccount />}
+                {id == "start" && <GetStarted />}
               </Step>
             );
           })}

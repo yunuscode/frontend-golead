@@ -12,10 +12,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import useAuthStore from "@/stores/auth.provider";
 import { useTheme } from "@/stores/theme.provider";
+import { useNavigate } from "react-router-dom";
 
 export function UserNav() {
   const { theme, setTheme } = useTheme();
   const { setUser, user } = useAuthStore();
+  const navigate = useNavigate();
 
   const changeTheme = () => setTheme(theme == "dark" ? "light" : "dark");
 
@@ -46,7 +48,7 @@ export function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => navigate("/settings/billing")}>
             Billing
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>

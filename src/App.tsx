@@ -5,11 +5,16 @@ import { ThemeProvider } from "./stores/theme.provider";
 import Layout from "@/components/global/layout";
 import Home from "./pages/dashboard/home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import BillingPage from "./pages/settings/billing";
 
 const router = createHashRouter([
   {
     path: "/auth/login",
     element: <Login />,
+  },
+  {
+    path: "/settings/billing",
+    element: <Layout children={<BillingPage />} />,
   },
   {
     path: "/",

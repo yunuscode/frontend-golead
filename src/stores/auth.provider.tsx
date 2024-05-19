@@ -1,14 +1,23 @@
 import { create } from "zustand";
 
-type UserStatus = "ACTIVE" | "PAYMENT_FAILED" | "BANNED";
-
 interface User {
   screen_name: string;
   name: string;
-  user_id: string;
   twitter_id: string;
-  status: UserStatus;
   profile_image_url?: string;
+  stripe_price_id?: string;
+  stripe_current_period_end?: string;
+  stripe_attemp_fail_count?: string;
+  limits?: Limits;
+}
+
+interface Limits {
+  colm_dm_credits?: number;
+  lead_scraper_credits?: number;
+  content_schedule_credits?: number;
+  ai_content_credits?: number;
+  auto_dm_credits?: number;
+  account_limit?: number;
 }
 
 type AuthProviderState = {

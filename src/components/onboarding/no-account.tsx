@@ -1,6 +1,9 @@
+import { useStepper } from "../stepper";
 import { Button } from "../ui/button";
 
 export default function NoAccount() {
+  const { nextStep } = useStepper();
+
   return (
     <div className="w-full mx-auto min-h-1/2 mt-5 border bg-white dark:bg-gray-900 flex flex-col justify-start items-center p-5">
       <div className="mt-8 max-w-md px-4 text-center">
@@ -12,7 +15,9 @@ export default function NoAccount() {
           realtime.
         </p>
         <div className="mt-6 flex flex-col gap-4 sm:flex-row justify-center">
-          <Button variant="secondary">Skip for now</Button>
+          <Button variant="secondary" onClick={() => nextStep()}>
+            Skip for now
+          </Button>
           <Button>Install Chrome Extension</Button>
         </div>
       </div>

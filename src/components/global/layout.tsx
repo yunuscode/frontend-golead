@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import Nav from "./nav";
 import useAuth from "@/hooks/useAuth";
 import { LoadingSpinner } from "./spinner";
 import Login from "@/pages/auth/login";
 import Onboarding from "../dashboard/onboarding";
+import useAccountStore from "@/stores/account.provider";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,11 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const { user, isLoading } = useAuth();
+  const { accounts } = useAccountStore();
+
+  const isOnboardingEnabled = useMemo(() => {
+    return accounts.length === 0 || !user?.stripe_price_id;
+  }, [accounts, user]);
 
   if (isLoading) {
     return (
@@ -24,11 +30,19 @@ export default function Layout({ children }: LayoutProps) {
     return <Login />;
   }
 
+  if (isOnboardingEnabled) {
+    return (
+      <>
+        <Nav />
+        <Onboarding />
+      </>
+    );
+  }
+
   return (
     <>
       <Nav />
-      <Onboarding />
-      {/* <div className="flex-col flex">{children}</div> */}
+      {children}
     </>
   );
 }

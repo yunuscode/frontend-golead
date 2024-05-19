@@ -1,5 +1,6 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
 interface NavItem {
   link: string;
@@ -30,6 +31,7 @@ export default function MainNav({
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <nav
@@ -37,9 +39,10 @@ export default function MainNav({
       {...props}
     >
       {navList.map((item: NavItem, index: number) => (
-        <a
+        <Button
+          variant="ghost"
           key={index}
-          href={item.link}
+          onClick={() => navigate(item.link)}
           className={
             location.pathname.startsWith(item.link)
               ? "text-sm font-medium transition-colors hover:text-primary"
@@ -47,7 +50,7 @@ export default function MainNav({
           }
         >
           {item.name}
-        </a>
+        </Button>
       ))}
     </nav>
   );
