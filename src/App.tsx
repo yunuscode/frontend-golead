@@ -6,6 +6,7 @@ import Layout from "@/components/global/layout";
 import Home from "./pages/dashboard/home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import BillingPage from "./pages/settings/billing";
+import MailPage from "./pages/mail/mail";
 
 const router = createHashRouter([
   {
@@ -15,6 +16,10 @@ const router = createHashRouter([
   {
     path: "/settings/billing",
     element: <Layout children={<BillingPage />} />,
+  },
+  {
+    path: "/mail",
+    element: <Layout children={<MailPage />} />,
   },
   {
     path: "/",

@@ -17,7 +17,7 @@ const navList: NavItem[] = [
     name: "Schedules",
   },
   {
-    link: "/dm",
+    link: "/mail",
     name: "Direct messages",
   },
   {
@@ -38,20 +38,27 @@ export default function MainNav({
       className={cn("flex items-center space-x-4 lg:space-x-6", className)}
       {...props}
     >
-      {navList.map((item: NavItem, index: number) => (
-        <Button
-          variant="ghost"
-          key={index}
-          onClick={() => navigate(item.link)}
-          className={
-            location.pathname.startsWith(item.link)
-              ? "text-sm font-medium transition-colors hover:text-primary"
-              : "text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          }
-        >
-          {item.name}
-        </Button>
-      ))}
+      {navList.map((item: NavItem, index: number) => {
+        const isDashboardActive =
+          item.link == "/" && location.pathname.length === 1 ? true : false;
+        const isActive = location.pathname.startsWith(item.link);
+
+        return (
+          <Button
+            variant="ghost"
+            key={index}
+            onClick={() => navigate(item.link)}
+            className={cn({
+              "text-sm font-medium transition-colors hover:text-primary":
+                location.pathname.startsWith(item.link),
+              "text-sm font-medium text-muted-foreground transition-colors hover:text-primary":
+                !(item.link == "/" ? isDashboardActive : isActive),
+            })}
+          >
+            {item.name}
+          </Button>
+        );
+      })}
     </nav>
   );
 }
