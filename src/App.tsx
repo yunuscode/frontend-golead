@@ -7,6 +7,8 @@ import Home from "./pages/dashboard/home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import BillingPage from "./pages/settings/billing";
 import MailPage from "./pages/mail/mail";
+import LeadScraperPage from "./pages/lead/lead-scraper";
+import AddLeadPage from "./pages/lead/add-lead";
 
 const router = createHashRouter([
   {
@@ -20,6 +22,14 @@ const router = createHashRouter([
   {
     path: "/mail",
     element: <Layout children={<MailPage />} />,
+  },
+  {
+    path: "/lead",
+    element: <Layout children={<LeadScraperPage />} />,
+  },
+  {
+    path: "/add-lead",
+    element: <Layout children={<AddLeadPage />} />,
   },
   {
     path: "/",

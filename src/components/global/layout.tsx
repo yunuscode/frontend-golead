@@ -5,6 +5,7 @@ import { LoadingSpinner } from "./spinner";
 import Login from "@/pages/auth/login";
 import Onboarding from "../dashboard/onboarding";
 import useAccountStore from "@/stores/account.provider";
+import { Outlet } from "react-router-dom";
 
 interface LayoutProps {
   children: React.ReactNode;

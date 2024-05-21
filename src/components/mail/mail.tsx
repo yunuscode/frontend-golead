@@ -80,7 +80,7 @@ export function MailComponent({
           >
             <div className={cn("flex h-[56px] items-center px-4")}>
               <span className="w-2 h-2 bg-green-600 rounded-full animate-pulse mr-2" />
-              <p className="text-sm font-semibold">Mail is up to date!</p>
+              <p className="text-sm font-semibold">Messages is up to date!</p>
             </div>
             <Separator />
             <Nav
